@@ -1,2 +1,2 @@
 # games
-games trading site
+games trading site for gaming freaks
