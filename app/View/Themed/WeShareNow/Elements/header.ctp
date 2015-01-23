@@ -18,7 +18,7 @@
 <body>
 <div class="main-container">
   <div class="dr-bg1">
-    <div class="main-header">
+    <div class="main-header main-header2">
       <div class="dr-wrapper">
         <div class="dr-header">
           <div class="dr-logo"><a href="index.html"><img src="<?php echo $this->webroot; ?>img/logo.png " alt=" " /></a>

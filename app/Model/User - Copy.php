@@ -1,47 +1,40 @@
 <?php 
 
 App::uses('AuthComponent','Controller/Component');
-App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
 	//public $avatarUploadDir = 'img/avatars';
 
 	public $validate = array(
-	'fname' => array(
-		'required' => array(
-			'rule' => 'notEmpty',
-			'message' => 'Please enter your first name'
-		)
-	),
-	'password' => array(
-		'required' => array(
-			'rule' => 'notEmpty',
-			'message' => 'Please enter a password'
-		)
-	),
-	'lname' => array(
-		'required' => array(
-			'rule' => 'notEmpty',
-			'message' => 'Please enter last name'
-		)
-	),
-	 'email' => array(
-	 	'rule'=>'email',
-        'message' => 'Please enter a valid email address'
-	 	)
-);
 
-	public function beforeSave($options = array()) {
-		if (!parent::beforeSave($options)) {
-			return false;
-		}
-		if (isset($this->data[$this->alias]['password'])) {
-			$hasher = new SimplePasswordHasher();
-			$this->data[$this->alias]['password'] = $hasher->hash($this->data[$this->alias]['password']);
-		}
-	return true;
-	}
+		'fname' => array(
+			'nonEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Firstname is required',
+				'allowEmpty' => false
+				),
+
+		'between' => array(
+			'rule' => array('between',5,15),
+			'required' => true,
+			'message' => 'Firstname must be between 5 to 10 characters',
+
+			)),
+
+		'lname' => array(
+			'nonEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'lastname is required',
+				'allowEmpty' => false
+				),
+
+		'between' => array(
+			'rule' => array('between',5,15),
+			'required' => true,
+			'message' => 'Firstname must be between 5 to 10 characters',
+
+			)),
 /*
 		'unique' => array(
 			'rule' => array('isUniqueUsername'),
@@ -55,7 +48,18 @@ class User extends AppModel {
 		  ),
 		  */
 
-		
+		'password' => array(
+			'required' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'A password is required',
+				),
+
+			'min_length' => array(
+				'rule' => array('minLength','6'),
+				'message' => 'Paasword must have a minimum of 6 charaters',
+
+				),
+			),
 
 		/*'password_confirm' => array(
 			'required' => array(
@@ -72,9 +76,22 @@ class User extends AppModel {
 
 
 
-	
+		'email' => array(
+			'required' => array(
+			'rule' => array('email',true),
+			'message' => 'Please provide a valid email adddress'
+			),
+             'unique' => array(
+             	'rule' => array('isUniqueEmail'),
+            'message' => 'This email already exists',
+			),
+            'between' => array(
+            'rule' => array('between',6,60),
+            'message'=> 'Email must be between 6 t0 60 characters'
+            )
+         ),
    	
-
+);
 
 /*
   function isUniqueEmail($check){

@@ -235,11 +235,29 @@ width: 9px;	height: 5px;	background: transparent;	top: 4px;	left: 4px;	border: 3
 
 
 
+.input.submit > label {
+    display: none;
+}
+
+
+.popsec .loginsec .row .col input[type="password"] {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    color: #d9d9d9;
+    float: left;
+    font-family: "open_sanssemibold_italic";
+    font-size: 22px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 5%;
+    width: 74%;
+}
 
 
 
-
-
+.form-error {
+    color:#E81515 ;
+}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 
@@ -457,3 +475,4 @@ width: 9px;	height: 5px;	background: transparent;	top: 4px;	left: 4px;	border: 3
 	.popsec .loginsec{ width:80%;}
 	
 }
+
