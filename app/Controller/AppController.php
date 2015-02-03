@@ -31,26 +31,31 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-     public $view   = 'Themed';
-     public $theme = 'WeShareNow';
 
- /*
+    public $helpers = array('Html', 'Form', 'Js', 'Session');
     public $components = array(
-    	//'Debugkit.Toolbar',
+    	
     	'Session',
-    	'Auth' => array(
-    	'loginRedirect' => array('controller'=> 'users','action'=>'index'),
-    		'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
-        'authError' => 'You must be logged in to view this page.',
-        'loginError' => 'Invalid Username or Password entered, please try again.'
- 
-    		));
+       'Auth' => array(
+            	'loginAction' => array(
+                    'controller' => 'users',
+                    'action' => 'index',
+                ),
+              'authenticate' => array('Form'=>array('fields'=>array('username'=>'email'))),
+               'loginRedirect' => array('controller' => 'users', 'action' => 'dashboard'),
+               'logoutRedirect' => array('controller' => 'users', 'action' => 'logout'),
+               
+      
+                 'logoutRedirect' => array(
+                     'controller' => 'users',
+                    'action' => 'index',
+                ),
+     		),
+		);
     		
 
     public function beforeFilter(){
-    	$this->Auth->allow('login');
-    }
-    
-    */
-    
+    	$this->Auth->allow(array('login', 'social_login','forgetpwd','reset','search','find'));
+
+    }  
 }
